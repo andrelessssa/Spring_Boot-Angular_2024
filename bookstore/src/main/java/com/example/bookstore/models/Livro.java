@@ -1,12 +1,25 @@
 package com.example.bookstore.models;
 
-public class Livro {
+import java.io.Serializable;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+@Entity
+public class Livro implements Serializable {
+    private static final long serialversionUID = 1;
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String titulo;
     private String nome_autor;
     private String texto;
 
+    @OneToMany(mappedBy = "categoria")
     private Categoria categoria;
 
     public Livro() {
